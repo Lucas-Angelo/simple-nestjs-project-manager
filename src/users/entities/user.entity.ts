@@ -1,18 +1,40 @@
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    COLUMN_NAMES,
+    ENTITY_NAMES,
+} from '../../common/constants/database.constants';
 import { Project } from '../../projects/entities/project.entity';
 import { Task } from '../../tasks/entities/task.entity';
 
+@Entity({ name: ENTITY_NAMES.USER, orderBy: { firstName: 'ASC' } })
 export class User {
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  firstName: string;
+    @OneToMany(() => Project, (project) => project.user)
+    projects: Project[];
 
-  lastName: string;
+    @OneToMany(() => Task, (task) => task.user)
+    tasks: Task[];
 
-  email: string;
+    @Column({
+        name: COLUMN_NAMES.USER.FIRST_NAME,
+        nullable: false,
+        length: 100,
+    })
+    firstName: string;
 
-  password: string;
+    @Column({ name: COLUMN_NAMES.USER.LAST_NAME, nullable: false, length: 100 })
+    lastName: string;
 
-  projects: Project[];
+    @Column({
+        name: COLUMN_NAMES.USER.EMAIL,
+        unique: true,
+        nullable: false,
+        length: 255,
+    })
+    email: string;
 
-  tasks: Task[];
+    @Column({ name: COLUMN_NAMES.USER.PASSWORD, nullable: false })
+    password: string;
 }

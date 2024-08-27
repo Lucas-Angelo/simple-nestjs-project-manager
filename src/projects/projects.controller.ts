@@ -1,42 +1,52 @@
 import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
+    Body,
+    Controller,
+    Delete,
+    Get,
+    HttpCode,
+    HttpStatus,
+    Param,
+    Patch,
+    Post,
 } from '@nestjs/common';
-import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
+import { ProjectsService } from './projects.service';
 
 @Controller('projects')
 export class ProjectsController {
-  constructor(private readonly projectsService: ProjectsService) {}
+    constructor(private readonly projectsService: ProjectsService) {}
 
-  @Post()
-  create(@Body() createProjectDto: CreateProjectDto) {
-    return this.projectsService.create(createProjectDto);
-  }
+    @Post()
+    @HttpCode(HttpStatus.CREATED)
+    create(@Body() createProjectDto: CreateProjectDto) {
+        return this.projectsService.create(createProjectDto);
+    }
 
-  @Get()
-  findAll() {
-    return this.projectsService.findAll();
-  }
+    @Get()
+    @HttpCode(HttpStatus.OK)
+    findAll() {
+        return this.projectsService.findAll();
+    }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.projectsService.findOne(+id);
-  }
+    @Get(':id')
+    @HttpCode(HttpStatus.OK)
+    findOne(@Param('id') id: string) {
+        return this.projectsService.findOne(+id);
+    }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
-    return this.projectsService.update(+id, updateProjectDto);
-  }
+    @Patch(':id')
+    @HttpCode(HttpStatus.OK)
+    update(
+        @Param('id') id: string,
+        @Body() updateProjectDto: UpdateProjectDto,
+    ) {
+        return this.projectsService.update(+id, updateProjectDto);
+    }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.projectsService.remove(+id);
-  }
+    @Delete(':id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    remove(@Param('id') id: string) {
+        return this.projectsService.remove(+id);
+    }
 }
