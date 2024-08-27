@@ -1,25 +1,51 @@
+import {
+    Column,
+    CreateDateColumn,
+    Entity,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
+import {
+    COLUMN_NAMES,
+    ENTITY_NAMES,
+} from '../../common/constants/database.constants';
 import { Project } from '../../projects/entities/project.entity';
 import { User } from '../../users/entities/user.entity';
+import { TaskStatus } from '../enum/task.status.enum';
 
+@Entity({ name: ENTITY_NAMES.TASK, orderBy: { date: 'ASC' } })
 export class Task {
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  name: string;
+    @ManyToOne(() => Project, (project) => project.tasks, {
+        nullable: false,
+        onDelete: 'CASCADE',
+    })
+    project: Project;
 
-  description: string;
+    @ManyToOne(() => User, (user) => user.tasks, {
+        nullable: false,
+        onDelete: 'CASCADE',
+    })
+    user: User;
 
-  status: TaskStatus;
+    @Column({ name: COLUMN_NAMES.TASK.NAME, nullable: false, length: 255 })
+    name: string;
 
-  createdAt: Date;
+    @Column({
+        name: COLUMN_NAMES.TASK.DESCRIPTION,
+        type: 'text',
+        nullable: true,
+    })
+    description: string;
 
-  date: Date;
+    @Column({ name: 'status', nullable: false, length: 255 })
+    status: TaskStatus;
 
-  project: Project;
+    @CreateDateColumn({ name: COLUMN_NAMES.TASK.CREATED_AT })
+    createdAt: Date;
 
-  user: User;
-}
-
-export enum TaskStatus {
-  pending = 'pending',
-  completed = 'completed',
+    @Column({ name: COLUMN_NAMES.TASK.DATE, type: 'date', nullable: false })
+    date: Date;
 }
