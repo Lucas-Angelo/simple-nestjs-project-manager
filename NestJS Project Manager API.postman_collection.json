@@ -564,6 +564,95 @@
 					]
 				},
 				{
+					"name": "Get All Projects with Pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/projects?page=1&pageSize=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Projects with Pagination",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/projects?page=1&pageSize=5",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "127"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7f-vP/h9WCgShnuEta4joKkTPencUE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Aug 2024 19:46:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Novo projeto\",\n            \"description\": \"Esse é um projeto do Lucas Ângelo\"\n        }\n    ],\n    \"total\": 1,\n    \"limit\": 0,\n    \"offset\": 5\n}"
+						}
+					]
+				},
+				{
 					"name": "Get Project by ID",
 					"request": {
 						"method": "GET",
