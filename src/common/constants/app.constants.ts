@@ -1,0 +1,3 @@
+export const CACHE_CONSTANTS = {
+    DEFAULT_CACHE_TTL: 30000,
+};
