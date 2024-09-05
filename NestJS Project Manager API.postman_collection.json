@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Lucas\",\n  \"lastName\": \"Ângelo\",\n  \"email\": \"lucas.angelo@example.com\",\n  \"password\": \"senhasegura\"\n}"
+							"raw": "{\n    \"firstName\": \"Lucas\",\n    \"lastName\": \"Ângelo\",\n    \"email\": \"lucas.angelo@example.com\",\n    \"password\": \"senhasegura\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/users",
@@ -48,7 +48,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"firstName\": \"Lucas\",\n  \"lastName\": \"Ângelo\",\n  \"email\": \"lucas.angelo@example.com\",\n  \"password\": \"senhasegura\"\n}"
+									"raw": "{\n    \"firstName\": \"Lucas\",\n    \"lastName\": \"Ângelo\",\n    \"email\": \"lucas.angelo@example.com\",\n    \"password\": \"senhasegura\"\n}"
 								},
 								"url": {
 									"raw": "{{base_url}}/users",
@@ -74,15 +74,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "109"
+									"value": "84"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"6d-kK87+7jU4U1wuGApkLHmIuEwsRs\""
+									"value": "W/\"54-QZ+6p5n/ioPthcx79PuNeyt9y0U\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:31:24 GMT"
+									"value": "Thu, 05 Sep 2024 01:24:20 GMT"
 								},
 								{
 									"key": "Connection",
@@ -94,13 +94,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"firstName\": \"Lucas\",\n    \"lastName\": \"Ângelo\",\n    \"email\": \"lucas.angelo@example.com\",\n    \"password\": \"senhasegura\",\n    \"id\": 1\n}"
+							"body": "{\n    \"firstName\": \"Lucas\",\n    \"lastName\": \"Ângelo\",\n    \"email\": \"lucas.angelo@example.com\",\n    \"id\": 1\n}"
 						}
 					]
 				},
 				{
-					"name": "Get All Users",
+					"name": "Get All Users (only logged)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -143,15 +153,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "111"
+									"value": "86"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"6f-oCdMEm7tzOg6rJofGYp79r0JzSU\""
+									"value": "W/\"56-jcGCfHQOFIkfiHXOLMdj69hcJBs\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:31:35 GMT"
+									"value": "Thu, 05 Sep 2024 01:22:09 GMT"
 								},
 								{
 									"key": "Connection",
@@ -163,13 +173,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n    {\n        \"id\": 1,\n        \"firstName\": \"Lucas\",\n        \"lastName\": \"Ângelo\",\n        \"email\": \"lucas.angelo@example.com\",\n        \"password\": \"senhasegura\"\n    }\n]"
+							"body": "[\n    {\n        \"id\": 1,\n        \"firstName\": \"Lucas\",\n        \"lastName\": \"Ângelo\",\n        \"email\": \"lucas.angelo@example.com\"\n    }\n]"
 						}
 					]
 				},
 				{
 					"name": "Get User by ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -214,15 +234,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "109"
+									"value": "84"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"6d-EsLxvnoQ1DXhbsXDVp7LkWX9/28\""
+									"value": "W/\"54-xK7VbJPzjRrJ8sJ324SVc3rsvAc\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:31:47 GMT"
+									"value": "Thu, 05 Sep 2024 01:22:41 GMT"
 								},
 								{
 									"key": "Connection",
@@ -234,13 +254,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 1,\n    \"firstName\": \"Lucas\",\n    \"lastName\": \"Ângelo\",\n    \"email\": \"lucas.angelo@example.com\",\n    \"password\": \"senhasegura\"\n}"
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"Lucas\",\n    \"lastName\": \"Ângelo\",\n    \"email\": \"lucas.angelo@example.com\"\n}"
 						}
 					]
 				},
 				{
 					"name": "Update User",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [
 							{
@@ -251,7 +281,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Samuel\",\n  \"lastName\": \"Martins\",\n  \"email\": \"samuel.martins@example.com\"\n}"
+							"raw": "{\n    \"firstName\": \"Lucas Atualizado\",\n    \"lastName\": \"Ângelo Atualizado\",\n    \"email\": \"lucas.angelo@example.com\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/users/1",
@@ -278,7 +308,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"firstName\": \"Samuel\",\n  \"lastName\": \"Martins\",\n  \"email\": \"samuel.martins@example.com\"\n}"
+									"raw": "{\n    \"firstName\": \"Lucas Atualizado\",\n    \"lastName\": \"Ângelo Atualizado\",\n    \"email\": \"lucas.angelo@example.com\"\n}"
 								},
 								"url": {
 									"raw": "{{base_url}}/users/1",
@@ -305,15 +335,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "112"
+									"value": "106"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"70-gCDleRxZVPUGg3msmYVki8iGyTs\""
+									"value": "W/\"6a-kZ3g/L6pl7j2CXAhzX5V+688di4\""
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 27 Aug 2024 00:19:46 GMT"
+									"value": "Thu, 05 Sep 2024 01:25:20 GMT"
 								},
 								{
 									"key": "Connection",
@@ -325,13 +355,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 1,\n    \"firstName\": \"Samuel\",\n    \"lastName\": \"Martins\",\n    \"email\": \"samuel.martins@example.com\",\n    \"password\": \"senhasegura\"\n}"
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"Lucas Atualizado\",\n    \"lastName\": \"Ângelo Atualizado\",\n    \"email\": \"lucas.angelo@example.com\"\n}"
 						}
 					]
 				},
 				{
 					"name": "Delete User",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -362,29 +402,21 @@
 									]
 								}
 							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
 							"header": [
 								{
 									"key": "X-Powered-By",
 									"value": "Express"
 								},
 								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "23"
-								},
-								{
 									"key": "ETag",
-									"value": "W/\"17-PVQD/E0HAqMH9FRBYNXdIixTtCA\""
+									"value": "W/\"63-VVzi8Ug7/41ciQHUD2I6XoOaY/Y\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:32:00 GMT"
+									"value": "Thu, 05 Sep 2024 01:25:37 GMT"
 								},
 								{
 									"key": "Connection",
@@ -396,7 +428,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"raw\": [],\n    \"affected\": 1\n}"
+							"body": null
 						}
 					]
 				}
@@ -408,17 +440,33 @@
 				{
 					"name": "Create Project",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Novo projeto\",\n  \"description\": \"Esse é um projeto do Lucas Ângelo\",\n  \"userId\": 1\n}"
+							"raw": "{\n    \"name\": \"Novo projeto\",\n    \"description\": \"Esse é um projeto do Lucas Ângelo\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/projects",
@@ -444,7 +492,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Novo projeto\",\n  \"description\": \"Esse é um projeto do Lucas Ângelo\",\n  \"userId\": 1\n}"
+									"raw": "{\n    \"name\": \"Novo projeto\",\n    \"description\": \"Esse é um projeto do Lucas Ângelo\"\n}"
 								},
 								"url": {
 									"raw": "{{base_url}}/projects",
@@ -470,15 +518,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "91"
+									"value": "174"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"5b-ysyaaWM6xLHv2CR/R+lnrC7mu+M\""
+									"value": "W/\"ae-AGoOET7dr5yuzp9kUsABUnMTB8s\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:33:12 GMT"
+									"value": "Thu, 05 Sep 2024 01:28:25 GMT"
 								},
 								{
 									"key": "Connection",
@@ -490,13 +538,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"name\": \"Novo projeto\",\n    \"description\": \"Esse é um projeto do Lucas Ângelo\",\n    \"user\": 1,\n    \"id\": 1\n}"
+							"body": "{\n    \"name\": \"Novo projeto\",\n    \"description\": \"Esse é um projeto do Lucas Ângelo\",\n    \"user\": {\n        \"id\": 1,\n        \"firstName\": \"Lucas\",\n        \"lastName\": \"Ângelo\",\n        \"email\": \"lucas.angelo@example.com\"\n    },\n    \"id\": 1\n}"
 						}
 					]
 				},
 				{
 					"name": "Get All Projects",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -539,15 +597,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "84"
+									"value": "128"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"54-j8wFdnm0lAlZBNnd0dZWUxLNhvI\""
+									"value": "W/\"80-Gdjm+fAJagOPHYv92VLZICp3Xvk\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:33:18 GMT"
+									"value": "Thu, 05 Sep 2024 01:28:32 GMT"
 								},
 								{
 									"key": "Connection",
@@ -559,13 +617,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Novo projeto\",\n        \"description\": \"Esse é um projeto do Lucas Ângelo\"\n    }\n]"
+							"body": "{\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Novo projeto\",\n            \"description\": \"Esse é um projeto do Lucas Ângelo\"\n        }\n    ],\n    \"total\": 1,\n    \"limit\": 0,\n    \"offset\": 10\n}"
 						}
 					]
 				},
 				{
 					"name": "Get All Projects with Pagination",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -628,15 +696,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "127"
+									"value": "128"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"7f-vP/h9WCgShnuEta4joKkTPencUE\""
+									"value": "W/\"80-Gdjm+fAJagOPHYv92VLZICp3Xvk\""
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 29 Aug 2024 19:46:35 GMT"
+									"value": "Thu, 05 Sep 2024 01:28:39 GMT"
 								},
 								{
 									"key": "Connection",
@@ -648,13 +716,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Novo projeto\",\n            \"description\": \"Esse é um projeto do Lucas Ângelo\"\n        }\n    ],\n    \"total\": 1,\n    \"limit\": 0,\n    \"offset\": 5\n}"
+							"body": "{\n    \"results\": [\n        {\n            \"id\": 1,\n            \"name\": \"Novo projeto\",\n            \"description\": \"Esse é um projeto do Lucas Ângelo\"\n        }\n    ],\n    \"total\": 1,\n    \"limit\": 0,\n    \"offset\": 10\n}"
 						}
 					]
 				},
 				{
 					"name": "Get Project by ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -707,7 +785,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:33:22 GMT"
+									"value": "Thu, 05 Sep 2024 01:28:45 GMT"
 								},
 								{
 									"key": "Connection",
@@ -726,6 +804,16 @@
 				{
 					"name": "Update Project",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [
 							{
@@ -736,7 +824,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Projeto atualizado\",\n  \"description\": \"Descrição do projeto atualizada\"\n}"
+							"raw": "{\n    \"name\": \"Projeto atualizado\",\n    \"description\": \"Descrição do projeto atualizada\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/projects/1",
@@ -763,7 +851,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Projeto atualizado\",\n  \"description\": \"Descrição do projeto atualizada\"\n}"
+									"raw": "{\n    \"name\": \"Projeto atualizado\",\n    \"description\": \"Descrição do projeto atualizada\"\n}"
 								},
 								"url": {
 									"raw": "{{base_url}}/projects/1",
@@ -790,15 +878,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "97"
+									"value": "42"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"61-sSnmaNvD4sHwlvd0w90mLo/8xaU\""
+									"value": "W/\"2a-mp76xueJwuBg6SC3F/3HJjTMrec\""
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 27 Aug 2024 00:20:13 GMT"
+									"value": "Thu, 05 Sep 2024 01:29:16 GMT"
 								},
 								{
 									"key": "Connection",
@@ -810,13 +898,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 1,\n    \"name\": \"Projeto atualizado\",\n    \"description\": \"Descrição do projeto atualizada\",\n    \"tasks\": []\n}"
+							"body": "{\n    \"generatedMaps\": [],\n    \"raw\": [],\n    \"affected\": 1\n}"
 						}
 					]
 				},
 				{
 					"name": "Delete Project",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -847,29 +945,17 @@
 									]
 								}
 							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
 							"header": [
 								{
 									"key": "X-Powered-By",
 									"value": "Express"
 								},
 								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "23"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"17-PVQD/E0HAqMH9FRBYNXdIixTtCA\""
-								},
-								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:36:31 GMT"
+									"value": "Thu, 05 Sep 2024 01:52:16 GMT"
 								},
 								{
 									"key": "Connection",
@@ -881,7 +967,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"raw\": [],\n    \"affected\": 1\n}"
+							"body": null
 						}
 					]
 				}
@@ -893,6 +979,16 @@
 				{
 					"name": "Create Task",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -903,7 +999,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Tarefa do projeto do Lucas Ângelo\",\n  \"description\": \"Descrição da tarefa do projeto do Lucas Ângelo\",\n  \"status\": \"pending\",\n  \"date\": \"2025-08-26T18:25:43.511Z\",\n  \"projectId\": 1,\n  \"user\": 1\n}"
+							"raw": "{\n    \"name\": \"Tarefa do projeto do Lucas Ângelo\",\n    \"description\": \"Descrição da tarefa do projeto do Lucas Ângelo\",\n    \"status\": \"pending\",\n    \"date\": \"2025-08-26T18:25:43.511Z\",\n    \"projectId\": 1\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/tasks",
@@ -929,7 +1025,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Tarefa do projeto do Lucas Ângelo\",\n  \"description\": \"Descrição da tarefa do projeto do Lucas Ângelo\",\n  \"status\": \"pending\",\n  \"date\": \"2025-08-26T18:25:43.511Z\",\n  \"projectId\": 1,\n  \"user\": 1\n}"
+									"raw": "{\n    \"name\": \"Tarefa do projeto do Lucas Ângelo\",\n    \"description\": \"Descrição da tarefa do projeto do Lucas Ângelo\",\n    \"status\": \"pending\",\n    \"date\": \"2025-08-26T18:25:43.511Z\",\n    \"projectId\": 1\n}"
 								},
 								"url": {
 									"raw": "{{base_url}}/tasks",
@@ -955,15 +1051,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "326"
+									"value": "409"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"146-RDqW503pvwfmAGCn30P+RhhHrPM\""
+									"value": "W/\"199-/UwYbe2lBL7FR8flMNYyB9iBkTE\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:35:16 GMT"
+									"value": "Thu, 05 Sep 2024 01:31:07 GMT"
 								},
 								{
 									"key": "Connection",
@@ -975,13 +1071,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"name\": \"Tarefa do projeto do Lucas Ângelo\",\n    \"description\": \"Descrição da tarefa do projeto do Lucas Ângelo\",\n    \"status\": \"pending\",\n    \"date\": \"2025-08-26T18:25:43.511Z\",\n    \"projectId\": 1,\n    \"user\": 1,\n    \"project\": {\n        \"id\": 1,\n        \"name\": \"Novo projeto\",\n        \"description\": \"Esse é um projeto do Lucas Ângelo\"\n    },\n    \"id\": 1,\n    \"createdAt\": \"2024-08-26T23:35:16.000Z\"\n}"
+							"body": "{\n    \"name\": \"Tarefa do projeto do Lucas Ângelo\",\n    \"description\": \"Descrição da tarefa do projeto do Lucas Ângelo\",\n    \"status\": \"pending\",\n    \"date\": \"2025-08-26T18:25:43.511Z\",\n    \"projectId\": 1,\n    \"project\": {\n        \"id\": 1,\n        \"name\": \"Novo projeto\",\n        \"description\": \"Esse é um projeto do Lucas Ângelo\"\n    },\n    \"user\": {\n        \"id\": 1,\n        \"firstName\": \"Lucas\",\n        \"lastName\": \"Ângelo\",\n        \"email\": \"lucas.angelo@example.com\"\n    },\n    \"id\": 1,\n    \"createdAt\": \"2024-09-05T01:31:07.000Z\"\n}"
 						}
 					]
 				},
 				{
 					"name": "Get All Tasks",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1024,15 +1130,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "212"
+									"value": "305"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"d4-vNaf9NZCi01PPR2Rcm9S6/S3zQ0\""
+									"value": "W/\"131-VbAeO85pzwUdEAKA4Gq6Hp/soXE\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:35:39 GMT"
+									"value": "Thu, 05 Sep 2024 01:31:16 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1044,13 +1150,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Tarefa do projeto do Lucas Ângelo\",\n        \"description\": \"Descrição da tarefa do projeto do Lucas Ângelo\",\n        \"status\": \"pending\",\n        \"createdAt\": \"2024-08-26T23:35:16.000Z\",\n        \"date\": \"2025-08-26T18:25:43.511Z\"\n    }\n]"
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Tarefa do projeto do Lucas Ângelo\",\n        \"description\": \"Descrição da tarefa do projeto do Lucas Ângelo\",\n        \"status\": \"pending\",\n        \"createdAt\": \"2024-09-05T01:31:07.000Z\",\n        \"date\": \"2025-08-26T18:25:43.511Z\",\n        \"project\": {\n            \"id\": 1,\n            \"name\": \"Novo projeto\",\n            \"description\": \"Esse é um projeto do Lucas Ângelo\"\n        }\n    }\n]"
 						}
 					]
 				},
 				{
 					"name": "Get Task by ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1095,15 +1211,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "210"
+									"value": "303"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"d2-r+wpoNhYdHfjHGDyqnXeCwSD/EI\""
+									"value": "W/\"12f-OeblV9dQtZa1wI1B1+fwGMh0LLE\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:35:48 GMT"
+									"value": "Thu, 05 Sep 2024 01:31:27 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1115,13 +1231,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 1,\n    \"name\": \"Tarefa do projeto do Lucas Ângelo\",\n    \"description\": \"Descrição da tarefa do projeto do Lucas Ângelo\",\n    \"status\": \"pending\",\n    \"createdAt\": \"2024-08-26T23:35:16.000Z\",\n    \"date\": \"2025-08-26T18:25:43.511Z\"\n}"
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Tarefa do projeto do Lucas Ângelo\",\n    \"description\": \"Descrição da tarefa do projeto do Lucas Ângelo\",\n    \"status\": \"pending\",\n    \"createdAt\": \"2024-09-05T01:31:07.000Z\",\n    \"date\": \"2025-08-26T18:25:43.511Z\",\n    \"project\": {\n        \"id\": 1,\n        \"name\": \"Novo projeto\",\n        \"description\": \"Esse é um projeto do Lucas Ângelo\"\n    }\n}"
 						}
 					]
 				},
 				{
 					"name": "Update Task",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [
 							{
@@ -1132,7 +1258,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Tarefa Atualizada do projeto do Lucas Ângelo\",\n  \"description\": \"Descrição Atualizada da tarefa do projeto do Lucas Ângelo\",\n  \"status\": \"pending\",\n  \"date\": \"2026-08-26T18:25:43.511Z\"\n}"
+							"raw": "{\n    \"name\": \"Tarefa Atualizada do projeto do Lucas Ângelo\",\n    \"description\": \"Descrição Atualizada da tarefa do projeto do Lucas Ângelo\",\n    \"status\": \"pending\",\n    \"date\": \"2026-08-26T18:25:43.511Z\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/tasks/1",
@@ -1159,7 +1285,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Tarefa Atualizada do projeto do Lucas Ângelo\",\n  \"description\": \"Descrição Atualizada da tarefa do projeto do Lucas Ângelo\",\n  \"status\": \"pending\",\n  \"date\": \"2026-08-26T18:25:43.511Z\"\n}"
+									"raw": "{\n    \"name\": \"Tarefa Atualizada do projeto do Lucas Ângelo\",\n    \"description\": \"Descrição Atualizada da tarefa do projeto do Lucas Ângelo\",\n    \"status\": \"pending\",\n    \"date\": \"2026-08-26T18:25:43.511Z\"\n}"
 								},
 								"url": {
 									"raw": "{{base_url}}/tasks/1",
@@ -1186,15 +1312,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "232"
+									"value": "42"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"e8-n0+7cCAouNuOoWIDEu4U1lEibYQ\""
+									"value": "W/\"2a-mp76xueJwuBg6SC3F/3HJjTMrec\""
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 27 Aug 2024 00:20:28 GMT"
+									"value": "Thu, 05 Sep 2024 01:33:32 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1206,13 +1332,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 1,\n    \"name\": \"Tarefa Atualizada do projeto do Lucas Ângelo\",\n    \"description\": \"Descrição Atualizada da tarefa do projeto do Lucas Ângelo\",\n    \"status\": \"pending\",\n    \"createdAt\": \"2024-08-27T00:20:26.000Z\",\n    \"date\": \"2026-08-26T18:25:43.511Z\"\n}"
+							"body": "{\n    \"generatedMaps\": [],\n    \"raw\": [],\n    \"affected\": 1\n}"
 						}
 					]
 				},
 				{
 					"name": "Delete Task",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -1243,21 +1379,13 @@
 									]
 								}
 							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
 							"header": [
 								{
 									"key": "X-Powered-By",
 									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "23"
 								},
 								{
 									"key": "ETag",
@@ -1265,7 +1393,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 26 Aug 2024 23:36:19 GMT"
+									"value": "Thu, 05 Sep 2024 01:33:42 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1277,7 +1405,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"raw\": [],\n    \"affected\": 1\n}"
+							"body": null
 						}
 					]
 				}
@@ -1298,7 +1426,174 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Hello World!",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c-Lve95gjOVATpfV8EL5X4nxwjKHE\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 05 Sep 2024 01:33:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Hello World!"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Verifica se a resposta contém o campo \"access_token\"\r",
+							"if (pm.response.code === 200 && pm.response.json().access_token) {\r",
+							"    // Obtém o token da resposta\r",
+							"    var token = pm.response.json().access_token;\r",
+							"\r",
+							"    // Salva o token na variável \"access_token\" da coleção\r",
+							"    pm.collectionVariables.set(\"access_token\", token);\r",
+							"\r",
+							"    // Exibe uma mensagem no console do Postman para confirmar que o token foi salvo\r",
+							"    console.log(\"Access token salvo com sucesso: \" + token);\r",
+							"} else {\r",
+							"    // Exibe uma mensagem de erro se o token não foi encontrado na resposta\r",
+							"    console.log(\"Erro: access_token não encontrado na resposta.\");\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"lucas.angelo@example.com\",\r\n    \"password\": \"senhasegura\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"lucas.angelo@example.com\",\r\n    \"password\": \"senhasegura\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "208"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d0-3UBOaNKgnI+XSTagsXbOjpfCbks\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 05 Sep 2024 01:33:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoibHVjYXMuYW5nZWxvQGV4YW1wbGUuY29tIiwiaWF0IjoxNzI1NTAwMDM5LCJleHAiOjE3MjU1MDM2Mzl9.mjcCLx425SrqdIUmgAEfMfnOGeHHHQNGruH4VgwLVGE\"\n}"
+				}
+			]
 		}
 	],
 	"event": [
@@ -1328,6 +1623,10 @@
 			"key": "base_url",
 			"value": "http://localhost:3000",
 			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": ""
 		}
 	]
 }

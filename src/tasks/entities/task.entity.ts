@@ -2,6 +2,7 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -28,6 +29,7 @@ export class Task {
         nullable: false,
         onDelete: 'CASCADE',
     })
+    @JoinColumn()
     user: User;
 
     @Column({ name: COLUMN_NAMES.TASK.NAME, nullable: false, length: 255 })

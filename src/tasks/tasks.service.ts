@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProjectsService } from 'src/projects/projects.service';
 import { Repository } from 'typeorm';
+import { ProjectsService } from '../projects/projects.service';
+import { UsersService } from '../users/users.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task } from './entities/task.entity';
@@ -12,36 +13,51 @@ export class TasksService {
         @InjectRepository(Task)
         private readonly taskRepository: Repository<Task>,
         private readonly projectsService: ProjectsService,
-    ) {}
+        private readonly usersService: UsersService,
+    ) { }
 
-    async create(createTaskDto: CreateTaskDto) {
-        const project = await this.projectsService.findById(
-            createTaskDto.projectId,
-        );
-        return this.taskRepository.save({ ...createTaskDto, project });
+    async create(userEmail: string, createTaskDto: CreateTaskDto) {
+        const user = await this.usersService.findOneByOrFail({ email: userEmail });
+        const project = await this.projectsService.findOneByIdAndUser(createTaskDto.projectId, user);
+
+        return this.taskRepository.save({
+            ...createTaskDto,
+            project,
+            user,
+        });
     }
 
-    async findAll() {
-        return this.taskRepository.find();
+    async findAll(userEmail: string) {
+        const user = await this.usersService.findOneByOrFail({ email: userEmail });
+        return this.taskRepository.find({ relations: ['project'], where: { user } });
     }
 
-    async findOne(id: number) {
-        const task = await this.taskRepository.findOne({ where: { id } });
+    async findOne(userEmail: string, id: number) {
+        const user = await this.usersService.findOneByOrFail({ email: userEmail });
+        const task = await this.taskRepository.findOne({ where: { id, user }, relations: ['project'] });
 
-        if (!task) throw new NotFoundException(`Task with ID ${id} not found`);
+        if (!task)
+            throw new NotFoundException(`Tarefa com ID ${id} não encontrada para o usuário`);
 
         return task;
     }
 
-    async update(id: number, updateTaskDto: UpdateTaskDto) {
-        const task = await this.findOne(id);
-        await this.taskRepository.update(task.id, updateTaskDto);
-        const updatedTask = await this.findOne(id);
-        return updatedTask;
+    async update(userEmail: string, id: number, updateTaskDto: UpdateTaskDto) {
+        const user = await this.usersService.findOneByOrFail({ email: userEmail });
+        const task = await this.taskRepository.findOneByOrFail({ id, user });
+
+        if (!task)
+            throw new NotFoundException(`Tarefa com ID ${id} não encontrada para o usuário`);
+
+        return this.taskRepository.update(id, updateTaskDto);
     }
 
-    async remove(id: number) {
-        const task = await this.findOne(id);
-        await this.taskRepository.remove(task);
+    async remove(userEmail: string, id: number) {
+        const task = await this.findOne(userEmail, id);
+
+        if (!task)
+            throw new NotFoundException(`Tarefa com ID ${id} não encontrada para o usuário`);
+
+        return this.taskRepository.delete(id);
     }
 }
