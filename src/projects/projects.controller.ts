@@ -15,6 +15,7 @@ import {
     Patch,
     Post,
     Query,
+    Req,
     UseInterceptors,
 } from '@nestjs/common';
 import { Cache } from 'cache-manager';
@@ -29,12 +30,12 @@ export class ProjectsController {
     constructor(
         private readonly projectsService: ProjectsService,
         @Inject(CACHE_MANAGER) private cacheManager: Cache,
-    ) {}
+    ) { }
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    async create(@Body() createProjectDto: CreateProjectDto) {
-        const result = await this.projectsService.create(createProjectDto);
+    async create(@Req() request, @Body() createProjectDto: CreateProjectDto) {
+        const result = await this.projectsService.create(request.user?.username, createProjectDto);
         await this.clearCache();
         return result;
     }
@@ -43,32 +44,33 @@ export class ProjectsController {
     @UseInterceptors(CacheInterceptor)
     @CacheTTL(CACHE_CONSTANTS.DEFAULT_CACHE_TTL)
     @HttpCode(HttpStatus.OK)
-    async findAll(@Query() filter?: FilterDto) {
-        console.log('buscando projetos...');
-        return this.projectsService.findAllPaginated(filter);
+    async findAll(@Req() request, @Query() filter?: FilterDto) {
+        console.log('Buscando projetos...');
+        return this.projectsService.findAllPaginated(request.user?.username, filter);
     }
 
     @Get(':id')
     @HttpCode(HttpStatus.OK)
-    findOne(@Param('id') id: string) {
-        return this.projectsService.findOne(+id);
+    findOne(@Req() request, @Param('id') id: string) {
+        return this.projectsService.findOne(request.user?.username, +id);
     }
 
     @Patch(':id')
     @HttpCode(HttpStatus.OK)
     async update(
+        @Req() request,
         @Param('id') id: string,
         @Body() updateProjectDto: UpdateProjectDto,
     ) {
-        const result = await this.projectsService.update(+id, updateProjectDto);
+        const result = await this.projectsService.update(request.user?.username, +id, updateProjectDto);
         await this.clearCache();
         return result;
     }
 
     @Delete(':id')
     @HttpCode(HttpStatus.NO_CONTENT)
-    async remove(@Param('id') id: string) {
-        await this.projectsService.remove(+id);
+    async remove(@Req() request, @Param('id') id: string) {
+        await this.projectsService.remove(request.user?.username, +id);
         await this.clearCache();
     }
 

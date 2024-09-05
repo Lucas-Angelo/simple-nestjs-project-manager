@@ -1,13 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-    DEFAULT_PAGE_SIZE,
-    FilterDto,
-    MAX_PAGE_SIZE,
-} from 'src/modules/pagination/dto/filter.dto';
+import { DEFAULT_PAGE_SIZE, FilterDto } from 'src/modules/pagination/dto/filter.dto';
 import { PageService } from 'src/modules/pagination/page/page.service';
-import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
+import { UsersService } from '../users/users.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project } from './entities/project.entity';
@@ -19,60 +15,77 @@ export class ProjectsService {
         private readonly projectRepository: Repository<Project>,
         private readonly usersService: UsersService,
         private readonly pageService: PageService,
-    ) {}
+    ) { }
 
-    async create(createProjectDto: CreateProjectDto) {
-        const user = await this.usersService.findOne(createProjectDto.userId);
-        return await this.projectRepository.save({ ...createProjectDto, user });
-    }
+    async create(userEmail: string, createProjectDto: CreateProjectDto) {
+        const user = await this.usersService.findOneByOrFail({ email: userEmail });
 
-    async findAllPaginated(filter?: FilterDto) {
-        if (!filter) return this.findAll();
-
-        if (filter.pageSize > MAX_PAGE_SIZE) filter.pageSize = MAX_PAGE_SIZE;
-        else if (filter.pageSize < 1) filter.pageSize = 1;
-        else if (!filter.pageSize) filter.pageSize = DEFAULT_PAGE_SIZE;
-
-        return this.pageService.paginate(this.projectRepository, {
-            page: filter.page,
-            pageSize: filter.pageSize,
+        return await this.projectRepository.save({
+            ...createProjectDto,
+            user,
         });
     }
 
-    async findAll() {
-        return await this.projectRepository.find();
-    }
-
-    async findOne(id: number) {
+    async findOneByIdAndUser(projectId: number, user: any) {
         const project = await this.projectRepository.findOne({
-            where: { id },
-            relations: ['tasks'],
+            where: { id: projectId, user },
         });
 
         if (!project)
-            throw new NotFoundException(`Project with ID ${id} not found`);
+            throw new NotFoundException(`Projeto com ID ${projectId} não encontrado para o usuário`);
 
         return project;
     }
 
-    async update(id: number, updateProjectDto: UpdateProjectDto) {
-        const project = await this.findOne(id);
-        await this.projectRepository.update(project.id, updateProjectDto);
-        const updatedProject = await this.findOne(id);
-        return updatedProject;
+    async findAll(userEmail: string) {
+        const user = await this.usersService.findOneByOrFail({ email: userEmail });
+
+        return this.projectRepository.find({ where: { user } });
     }
 
-    async remove(id: number) {
-        const project = await this.findOne(id);
-        await this.projectRepository.remove(project);
+    async findAllPaginated(userEmail: string, filter?: FilterDto) {
+        if (!filter)
+            return this.findAll(userEmail);
+
+        const user = await this.usersService.findOneByOrFail({ email: userEmail });
+
+        return this.pageService.paginate(
+            this.projectRepository,
+            { page: filter.page, pageSize: DEFAULT_PAGE_SIZE },
+            { user },
+        );
     }
 
-    async findById(id: number) {
-        const project = await this.projectRepository.findOne({ where: { id } });
+    async findOne(userEmail: string, id: number) {
+        const user = await this.usersService.findOneByOrFail({ email: userEmail });
+
+        const project = await this.projectRepository.findOne({
+            where: { id, user },
+            relations: { tasks: true },
+        });
 
         if (!project)
-            throw new NotFoundException(`Project with ID ${id} not found`);
+            throw new NotFoundException(`Projeto com ID ${id} não encontrado para o usuário`);
 
         return project;
+    }
+
+    async update(userEmail: string, id: number, updateProjectDto: UpdateProjectDto) {
+        const user = await this.usersService.findOneByOrFail({ email: userEmail });
+        const project = await this.findOne(user.email, id);
+
+        if (!project)
+            throw new NotFoundException(`Projeto com ID ${id} não encontrado para o usuário`);
+
+        return this.projectRepository.update(id, updateProjectDto);
+    }
+
+    async remove(userEmail: string, id: number) {
+        const project = await this.findOne(userEmail, id);
+
+        if (!project)
+            throw new NotFoundException(`Projeto com ID ${id} não encontrado para o usuário`);
+
+        return this.projectRepository.delete(id);
     }
 }

@@ -1,6 +1,7 @@
 import {
     Column,
     Entity,
+    JoinColumn,
     ManyToOne,
     OneToMany,
     PrimaryGeneratedColumn,
@@ -21,6 +22,7 @@ export class Project {
         nullable: false,
         onDelete: 'CASCADE',
     })
+    @JoinColumn()
     user: User;
 
     @OneToMany(() => Task, (task) => task.project, {

@@ -35,6 +35,6 @@ export class User {
     })
     email: string;
 
-    @Column({ name: COLUMN_NAMES.USER.PASSWORD, nullable: false })
+    @Column({ name: COLUMN_NAMES.USER.PASSWORD, nullable: false, select: false })
     password: string;
 }

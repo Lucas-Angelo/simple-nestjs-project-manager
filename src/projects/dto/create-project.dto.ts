@@ -1,10 +1,6 @@
-import { IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class CreateProjectDto {
-    @IsNotEmpty({ message: 'O ID do usuário é obrigatório' })
-    @IsNumber({}, { message: 'O ID do usuário deve ser um número' })
-    userId: number;
-
     @IsNotEmpty({ message: 'O nome do projeto é obrigatório' })
     @IsString({ message: 'O nome do projeto deve ser uma string' })
     @MaxLength(255, {
